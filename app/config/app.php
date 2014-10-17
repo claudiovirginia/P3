@@ -188,6 +188,9 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+		'Pre'			  => 'Paste\Pre',
+		'badcow'		  => 'badcow\lorem-ipsum',
+		'Faker'	  		  => 'Faker\Factory',
 
 	),
 
