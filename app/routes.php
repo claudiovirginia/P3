@@ -6,79 +6,75 @@ Route::get('/', function() {
 	return View::make('index');
 });
 
-//list all books/search
-Route::get('/list/{query?}', function($query) {
-	return View::make('list');
-});
 
-//display the form for a new book
-Route::get('/add', function() {
-
-});
-
-//process form for a new book
-Route::post('/add', function() {
+Route::get('/lorem', function() {
 	
-});
-
-//display the form to edit a new book
-Route::get('/edit/{title}', function($title) {
-
-});
-
-//process form for for a edit book
-Route::post('/edit', function() {
-	
-});
-
-
-Route::get('/data',	function() {
-	
-	//get the file
-	$books = File::get(app_path().'/database/books.json');
-	
-	//convert to an array
-	$books = json_decode($books, true);
-	
-	// using regular render() method, no label
-	echo Pre::render($books);
-});
-
-Route::get('/ipsum', function() {
+	$numberParagraphs = Input::get('number');
 	
 	//runt it as http://localhost/ipsum
 	$generator = new Badcow\LoremIpsum\Generator();
-	$paragraphs = $generator->getParagraphs(1);
-	echo implode('<p>', $paragraphs);
+	$paragraphs = $generator->getParagraphs($numberParagraphs);
 	
+	//$data['request'] = $request;
+	$data['number'] = $numberParagraphs;
+	$data['paragraphs'] = $paragraphs;
 	
-	
+		
+	//implode returns a string from the elements from an array
+	return View::make('lorem')
+		->with('query', implode('<p>', $paragraphs))
+		->with('data', $data)
+		->with('number', $numberParagraphs);
 });
+
+
+
+
+
 
 Route::get('/faker', function() {
 
-	//https://github.com/fzaninotto/Faker/tree/master
-	// require the Faker autoloader
-	//require('../vendor/fzaninotto/faker/src/autoload.php');
-		
 	// use the factory to create a Faker\Generator instance
 	//$faker = Faker\Factory::create();
-	
+		
+	$value = Input::get('number');
+	$val = intval($value);
 	$faker = Faker::create();
-    echo $faker->name.'<br/>'.'<br/>';
+	$data = array();
 	
-	for ($i=0; $i < 3; $i++) {
-		echo $faker->name.'<br/>';
-		echo $faker->address.'<br/>';
-		echo $faker->email.'<br/>';
-		echo $faker->text.'<br/>'.'<br/>';
-				
+	
+	//I am using a class
+	$GetUser = new GetUser($value);
+	$users = $GetUser->getInfo();
+	
+	$elements = array($faker);
+	//echo var_dump($elements).'<br/>';
+	
+	
+	for ($i=0; $i < $val; $i++) {
+		array_push ($data, $faker->name);
+		array_push($data, $faker->address);
+		array_push($data, $faker->phoneNumber);
+		array_push($data, $faker->country);
+	   	array_push($data, $faker->email);
 	}
 	
-	//namespace Faker\Provider\en_US;
-    
+	//new
+	$data1['numberOfUsers'] = $value;
+	$data1['users'] = $users;
+	//echo Pre::render($data1).'<br/>';
+
 	
-	
+	//return View::make('list')
+		//->with('query', $data)  //$data
+		//->with('total', $val);
+		
+			
+	return View::make('faker')
+		->with('query', $data1);
+					
+		//return View::make( 'viewfile', $data )->with( 'data', $data );
+			
 });
 
 Route::get('form', function(){
