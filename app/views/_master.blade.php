@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>@yield('title','Welcome')</title>
 	<meta charset="UTF-8">
@@ -10,6 +11,7 @@
 <body>
 	 <a href='/'>&larr; Home</a>
 	 <br><br><br>
-	@yield('body')
+	 @yield('body')
 </body>
+
 </html>

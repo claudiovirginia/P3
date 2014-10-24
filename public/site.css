@@ -1,6 +1,5 @@
 body {
 	margin-left: 10%;
-	margin-top: 1em;
 	margin-right: 10%;
 	background: #ff9;
 }
@@ -8,6 +7,9 @@ h4 {
 	font-family: helvetica, sans-serif;
 	border-bottom: thin dotted black;
 }
+h1 {
+	font-family: helvetica, sans-serif;
+}	
 div
 {
     background-color: #C0C0C0;

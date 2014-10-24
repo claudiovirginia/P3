@@ -1,7 +1,7 @@
 @extends('_master')
 
 @section('title')
-	<title>Welcome To User</title>
+	Welcome To User
 @stop
 
 @section('head')

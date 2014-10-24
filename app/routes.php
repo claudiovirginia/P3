@@ -43,11 +43,21 @@ Route::get('/faker', function() {
 });
 
 
+#password generator page
+Route::get('/password', function() {
 
-
-
-
-
-
-
-
+	//getting the value from the dropdown laravel form
+	$value = Input::get('number');
+		
+	//I am using a class to generate a password
+	$Password = new GetPassword($value);
+	$data = $Password->getPassword();	
+			
+	$data['number'] = $value;
+	$data['data'] = $data;
+	
+	//passing this array to the view		
+	return View::make('password')
+		->with('query', $data);
+	
+});

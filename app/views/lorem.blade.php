@@ -1,7 +1,7 @@
 @extends('_master')
 
 @section('title')
-	<title>Welcome To Lorem</title>
+	Welcome To Lorem
 @stop
 
 @section('head')
