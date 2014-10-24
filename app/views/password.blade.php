@@ -1,7 +1,7 @@
 @extends('_master')
 
 @section('title')
-	<title>Welcome To Password Generator</title>
+	Welcome To Password Generator
 @stop
 
 @section('head')
